@@ -30,11 +30,13 @@ My project will be a game where you control a spacecraft through the vast darkne
 
 ### Features
 
-1. << Feature 1 >>
-2. << Feature 2 >>
-3. << Feature 3 >>
-4. << Feature 4 >>
-5. << Feature 5 >>
+1. Title Screen
+2. Moveable Player
+3. Real-Time Score Tracker
+4. Obstacles with Hitboxes
+5. Energy System
+6. Game Over Screen
+7. Leaderboard Tracker
 
 ### Classes
 
