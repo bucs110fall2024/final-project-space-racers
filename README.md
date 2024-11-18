@@ -41,6 +41,9 @@ My project will be a game where you control a spacecraft through the vast darkne
 ### Classes
 
 - << You should have a list of each of your classes with a description >>
+- Player:
+- Obstacle:
+- Fuel: 
 
 ## ATP
 
