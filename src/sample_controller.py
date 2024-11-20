@@ -11,11 +11,17 @@ class Controller:
     self.p1 = Player()
     self.obstacles = pygame.sprite.Group()
     self.fuel = []
+    self.state = "START"
     #setup pygame data
     
   def mainloop(self):
     while True:
-      pass
+      if self.state == "GAME":
+        self.gameloop()
+      elif self.state == "START":
+        self.menuloop()
+      elif self.state == "END":
+        self.gameoverloop()
       #1 event loop
       #2 updates
       #3 redraw (completely overlay the screen to prevent artifacts)

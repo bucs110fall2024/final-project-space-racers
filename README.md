@@ -41,9 +41,9 @@ My project will be a game where you control a spacecraft through the vast darkne
 ### Classes
 
 - << You should have a list of each of your classes with a description >>
-- Player:
-- Obstacle:
-- Fuel: 
+- Player: This is the character that the player will control during the game
+- Obstacle: These are the objects that the player must avoid to stay alive
+- Fuel: These are the energy sources that the player must collect to stay alive
 
 ## ATP
 
