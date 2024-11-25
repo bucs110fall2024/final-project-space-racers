@@ -1,7 +1,7 @@
 import pygame
 
 class Fuel(pygame.sprite.Sprite):
-    def __init__(self, ):
+    def __init__(self, x, y):
         """
         This function initializes the Fuel object
         Args:
@@ -13,5 +13,5 @@ class Fuel(pygame.sprite.Sprite):
         
         self.image = pygame.image.load("assets/fuelcan.png")
         self.rect = self.image.get_rect()
-        self.rect.x = 0
-        self.rect.y = 0
+        self.rect.x = x
+        self.rect.y = y

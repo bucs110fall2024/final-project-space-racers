@@ -1,7 +1,7 @@
 import pygame
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, x, y):
         """
         This function initializes the Player object
         Args:
@@ -14,8 +14,9 @@ class Player(pygame.sprite.Sprite):
         
         self.image = pygame.image.load("assets/ship.png")
         self.rect = self.image.get_rect()
-        self.rect.x = 0
-        self.rect.y = 0
+        self.rect.x = x
+        self.rect.y = y
+        self.speed = 1
     
     def move_left(self):
         """
@@ -25,7 +26,7 @@ class Player(pygame.sprite.Sprite):
         None
 
         """
-        self.rect.x -= 1
+        self.rect.x -= self.speed
         
     def move_right(self):
         """
@@ -35,7 +36,7 @@ class Player(pygame.sprite.Sprite):
         None
 
         """
-        self.rect.x += 1
+        self.rect.x += self.speed
         
     def move_up(self):
         """
@@ -45,7 +46,7 @@ class Player(pygame.sprite.Sprite):
         None
 
         """
-        self.rect.y -= 1
+        self.rect.y -= self.speed
 
     def move_down(self):
         """
@@ -55,4 +56,4 @@ class Player(pygame.sprite.Sprite):
         None
 
         """
-        self.rect.x += 1
+        self.rect.x += self.speed
