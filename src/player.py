@@ -13,10 +13,11 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
         
         self.image = pygame.image.load("assets/ship.png")
+        self.image = pygame.transform.scale(self.image, (100, 100))
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
-        self.speed = 10
+        self.speed = 5
         self.score = 0
     
     def move_left(self):
