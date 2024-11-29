@@ -7,7 +7,8 @@ from src.fuel import Fuel
 
 MAX_OBSTACLES = 10
 MAX_FUELCANS = 1
-OBSTACLE_SPAWN_RATE = 6
+OBSTACLE_SPAWN_RATE = 3
+FUEL_SPAWN_RATE = 10
 
 class Controller:
   
@@ -101,16 +102,39 @@ class Controller:
       if obstacle_chance <= OBSTACLE_SPAWN_RATE and len(self.obstacles) < self.max_obstacles:
         self.obstacles.add(Obstacle(random.randint(0, self.width), -100))
         
+      fuel_chance = random.randint(1, 100)
+      if fuel_chance <= FUEL_SPAWN_RATE and len(self.fuel) < self.max_fuelcans:
+        self.fuel.add(Fuel(random.randint(0, self.width), -100))
+        
+      for obstacle in self.obstacles:
+        if self.p1.rect.colliderect(obstacle):
+          self.state = "END"
+          
+      for fuelcan in self.fuel:
+        if self.p1.rect.colliderect(fuelcan):
+          fuelcan.kill()
+        
       self.obstacles.update()
+      self.fuel.update()
       
       self.screen.blit(self.background, (0, 0))
       self.obstacles.draw(self.screen)
+      self.fuel.draw(self.screen)
       self.screen.blit(self.p1.image, self.p1.rect)
       pygame.display.flip()
       #redraw
     
   def gameoverloop(self):
-    pass
+      font = pygame.font.SysFont(None, 48)
+      end_message = font.render("GAME OVER", True, "red")
+
+      while self.state == "END":
+        for event in pygame.event.get():
+          if event.type == pygame.QUIT:
+            pygame.quit()
+            exit()
+        self.screen.blit(end_message, (50, 50))
+        pygame.display.flip()
       #event loop
 
       #update data
