@@ -17,7 +17,7 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
-        self.speed = 5
+        self.speed = 7
         self.score = 0
     
     def move_left(self):
@@ -59,4 +59,13 @@ class Player(pygame.sprite.Sprite):
 
         """
         self.rect.y += self.speed
-    
+        
+    def add_score(self):
+        """
+        This function adds the player's score as they play
+        Args:
+        Return: 
+        None
+
+        """
+        self.score += 1

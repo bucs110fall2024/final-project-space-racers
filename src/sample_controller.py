@@ -24,7 +24,6 @@ class Controller:
     self.max_fuelcans = MAX_FUELCANS
     self.background = pygame.image.load("assets/background.png")
     self.background = pygame.transform.scale(self.background, pygame.display.get_window_size())
-    self.p1.image = pygame.transform.scale(self.p1.image, (100, 100))
 
     pygame.key.set_repeat(10)
     self.state = "GAME"
@@ -62,6 +61,7 @@ class Controller:
       self.menu.update(pygame.event.get())
       self.menu.draw(self.screen)
       pygame.display.flip()
+    #bug: menu doesn't work
 
       #event loop
 
@@ -109,10 +109,16 @@ class Controller:
       for obstacle in self.obstacles:
         if self.p1.rect.colliderect(obstacle):
           self.state = "END"
+      #bug: obstacles have too big of a hitbox
           
       for fuelcan in self.fuel:
         if self.p1.rect.colliderect(fuelcan):
           fuelcan.kill()
+        elif fuelcan.rect.y >= 1080:
+          self.state = "END"
+        
+      score = self.p1.add_score()
+      #bug: score displays as NONE
         
       self.obstacles.update()
       self.fuel.update()
@@ -121,12 +127,17 @@ class Controller:
       self.obstacles.draw(self.screen)
       self.fuel.draw(self.screen)
       self.screen.blit(self.p1.image, self.p1.rect)
+      score_font = pygame.font.SysFont(None, 48)
+      score_message = score_font.render(f"Score:{score}", True, "red")
+      self.screen.blit(score_message, (1700, 50))
+      
+      
       pygame.display.flip()
       #redraw
     
   def gameoverloop(self):
-      font = pygame.font.SysFont(None, 48)
-      end_message = font.render("GAME OVER", True, "red")
+      end_font = pygame.font.SysFont(None, 48)
+      end_message = end_font.render("GAME OVER", True, "red")
 
       while self.state == "END":
         for event in pygame.event.get():
