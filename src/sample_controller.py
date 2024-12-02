@@ -119,8 +119,6 @@ class Controller:
         elif fuelcan.rect.y >= 1080:
           self.state = "END"
         
-      #bug: score displays as NONE
-        
       self.obstacles.update()
       self.fuel.update()
       
@@ -129,7 +127,7 @@ class Controller:
       self.fuel.draw(self.screen)
       self.screen.blit(self.p1.image, self.p1.rect)
       score_font = pygame.font.SysFont(None, 48)
-      score_message = score_font.render(f"Score:{self.score}", True, "red")
+      score_message = score_font.render(f"Score: {self.score}", True, "red")
       self.screen.blit(score_message, (1700, 50))
       
       
