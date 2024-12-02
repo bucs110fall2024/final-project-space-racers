@@ -45,9 +45,9 @@ My project will be a game where you control a spacecraft through the vast darkne
 - Fuel: These are the energy sources that the player must collect to stay alive
 
 ## ATP
-|Step | Description | Results |
+|Description | Steps | Results |
 |---|---|---|
-| 1: Start Game | Open terminal, go to the project folder, type: `python main.py`, and Click on start button | Character will appear on screen, and the game will start |
+| Verify that the user can start the program up | Open terminal, go to the project folder, type: `python main.py`, and click on start button | Character will appear on screen, and the game will start |
 
 
 | Step                 |Procedure             |Expected Results                   |
