@@ -59,13 +59,3 @@ class Player(pygame.sprite.Sprite):
 
         """
         self.rect.y += self.speed
-        
-    def add_score(self):
-        """
-        This function adds the player's score as they play
-        Args:
-        Return: 
-        None
-
-        """
-        self.score += 1

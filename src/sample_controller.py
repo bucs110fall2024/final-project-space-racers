@@ -24,6 +24,7 @@ class Controller:
     self.max_fuelcans = MAX_FUELCANS
     self.background = pygame.image.load("assets/background.png")
     self.background = pygame.transform.scale(self.background, pygame.display.get_window_size())
+    self.score = 0
 
     pygame.key.set_repeat(10)
     self.state = "GAME"
@@ -104,7 +105,7 @@ class Controller:
         
       fuel_chance = random.randint(1, 100)
       if fuel_chance <= FUEL_SPAWN_RATE and len(self.fuel) < self.max_fuelcans:
-        self.fuel.add(Fuel(random.randint(0, self.width), -100))
+        self.fuel.add(Fuel(random.randint(50, self.width - 50), -100))
         
       for obstacle in self.obstacles:
         if self.p1.rect.colliderect(obstacle):
@@ -114,10 +115,10 @@ class Controller:
       for fuelcan in self.fuel:
         if self.p1.rect.colliderect(fuelcan):
           fuelcan.kill()
+          self.score += 1
         elif fuelcan.rect.y >= 1080:
           self.state = "END"
         
-      score = self.p1.add_score()
       #bug: score displays as NONE
         
       self.obstacles.update()
@@ -128,7 +129,7 @@ class Controller:
       self.fuel.draw(self.screen)
       self.screen.blit(self.p1.image, self.p1.rect)
       score_font = pygame.font.SysFont(None, 48)
-      score_message = score_font.render(f"Score:{score}", True, "red")
+      score_message = score_font.render(f"Score:{self.score}", True, "red")
       self.screen.blit(score_message, (1700, 50))
       
       
