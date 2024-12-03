@@ -27,7 +27,7 @@ class Controller:
     self.score = 0
 
     pygame.key.set_repeat(10)
-    self.state = "GAME"
+    self.state = "START"
     #setup pygame data
     
   def mainloop(self):
@@ -51,7 +51,7 @@ class Controller:
   ### below are some sample loop states ###
 
   def startgame(self):
-    self.startgame = "GAME"
+    self.state = "GAME"
     
   def menuloop(self):
     self.menu = pygame_menu.Menu("Space Racers", self.width / 2, self.height / 2)
@@ -59,6 +59,10 @@ class Controller:
     self.menu.add.button("START", self.startgame, align=pygame_menu.locals.ALIGN_CENTER)
 
     while self.state == "START":
+      for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+          pygame.quit()
+          exit()
       self.menu.update(pygame.event.get())
       self.menu.draw(self.screen)
       pygame.display.flip()
@@ -128,7 +132,13 @@ class Controller:
       self.screen.blit(self.p1.image, self.p1.rect)
       score_font = pygame.font.SysFont(None, 48)
       score_message = score_font.render(f"Score: {self.score}", True, "red")
-      self.screen.blit(score_message, (1700, 50))
+      self.screen.blit(score_message, (1650, 50))
+      highscore_font = pygame.font.SysFont(None, 48)
+      self.highscore = open("src/highscore.txt", "r")
+      highscore = self.highscore.read()
+      highscore_message = highscore_font.render(f"High Score: {highscore}", True, "red")
+      self.screen.blit(highscore_message, (1650, 100))
+      self.highscore.close()
       
       
       pygame.display.flip()
@@ -143,6 +153,13 @@ class Controller:
           if event.type == pygame.QUIT:
             pygame.quit()
             exit()
+        self.highscore = open("src/highscore.txt", "r")
+        highscore = self.highscore.read()
+        self.highscore.close()
+        if self.score > int(highscore):
+          self.highscore = open("src/highscore.txt", "w")
+          self.highscore.write(str(self.score))
+          self.highscore.close()
         self.screen.blit(end_message, (50, 50))
         pygame.display.flip()
       #event loop
