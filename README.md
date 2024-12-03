@@ -39,7 +39,6 @@ My project will be a game where you control a spacecraft through the vast darkne
 
 ### Classes
 
-- << You should have a list of each of your classes with a description >>
 - Player: This is the character that the player will control during the game
 - Obstacle: These are the objects that the player must avoid to stay alive
 - Fuel: These are the energy sources that the player must collect to stay alive
@@ -52,10 +51,3 @@ My project will be a game where you control a spacecraft through the vast darkne
 | 3. Verify that the collisions between the player and the obstacles are correct | Start the game, make contact with a meteor, verify that the game will end | User will receive a game over |
 | 4. Verify that the collisions between the player and the fuel cans are correct | Start the game, make contact with a fuel cane, verify that the fuel can disappears and the score adds by one | Fuel can will disappear and the score will increase by one |
 | 5. Verify that the collisions between the fuel can and the bottom of the screen are correct | Start the game, allow the fuel can to leave the bottom of the screen, verify that the game will end | User will receive a game over |
-
-
-| Step                 |Procedure             |Expected Results                   |
-|----------------------|:--------------------:|----------------------------------:|
-|  1                   | Run Counter Program  |GUI window appears with count = 0  |
-|  2                   | click count button   | display changes to count = 1      |
-etc...
