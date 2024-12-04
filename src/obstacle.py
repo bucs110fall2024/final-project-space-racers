@@ -10,7 +10,6 @@ class Obstacle(pygame.sprite.Sprite):
 
         """
         super().__init__()
-        
         self.image = pygame.image.load("assets/meteor.png")
         self.image = pygame.transform.scale(self.image, (100, 100))
         self.rect = self.image.get_rect()

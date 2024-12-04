@@ -10,7 +10,6 @@ class Fuel(pygame.sprite.Sprite):
 
         """
         super().__init__()
-        
         self.image = pygame.image.load("assets/fuelcan.png")
         self.image = pygame.transform.scale(self.image, (100, 100))
         self.rect = self.image.get_rect()

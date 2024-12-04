@@ -52,15 +52,6 @@ class Controller:
                 self.gameoverloop()
             elif self.state == "START":
                 self.menuloop()
-            # 1 event loop
-            # 2 updates
-            # 3 redraw (completely overlay the screen to prevent artifacts)
-
-            # 4 display
-
-        # select state loop
-
-    ### below are some sample loop states ###
 
     def startgame(self):
         """
@@ -95,13 +86,6 @@ class Controller:
             self.menu.update(events)
             self.menu.draw(self.screen)
             pygame.display.flip()
-        # bug: menu doesn't work
-
-        # event loop
-
-        # update data
-
-        # redraw
 
     def gameloop(self):
         """
@@ -126,7 +110,6 @@ class Controller:
                     elif event.key == pygame.K_RIGHT:
                         self.p1.move_right()
 
-            # Sets world borders for the player
             if self.p1.rect.x > self.width - 100:
                 self.p1.rect.x = self.width - 100
             elif self.p1.rect.x < 0:
@@ -136,9 +119,6 @@ class Controller:
             elif self.p1.rect.y < 0:
                 self.p1.rect.y = 0
 
-            # event loop
-
-            # update data
             obstacle_chance = random.randint(1, 100)
             if (
                 obstacle_chance <= OBSTACLE_SPAWN_RATE
@@ -153,7 +133,6 @@ class Controller:
             for obstacle in self.obstacles:
                 if self.p1.rect.colliderect(obstacle):
                     self.state = "END"
-            # bug: obstacles have too big of a hitbox
 
             for fuelcan in self.fuel:
                 if self.p1.rect.colliderect(fuelcan):
@@ -180,9 +159,8 @@ class Controller:
             )
             self.screen.blit(highscore_message, (1650, 100))
             self.highscore.close()
-
+            
             pygame.display.flip()
-            # redraw
 
     def gameoverloop(self):
         """
@@ -194,12 +172,18 @@ class Controller:
         """
         end_font = pygame.font.SysFont(None, 48)
         end_message = end_font.render("GAME OVER", True, "red")
+        close_message = end_font.render("Press ESC to close game", True, "red")
 
         while self.state == "END":
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     exit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE:
+                        pygame.quit()
+                        exit()
+                        
             self.highscore = open("src/highscore.txt", "r")
             highscore = self.highscore.read()
             self.highscore.close()
@@ -208,9 +192,6 @@ class Controller:
                 self.highscore.write(str(self.score))
                 self.highscore.close()
             self.screen.blit(end_message, (50, 50))
+            self.screen.blit(close_message, (50, 100))
+            
             pygame.display.flip()
-        # event loop
-
-        # update data
-
-        # redraw

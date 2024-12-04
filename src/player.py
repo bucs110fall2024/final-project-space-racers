@@ -9,9 +9,7 @@ class Player(pygame.sprite.Sprite):
         None
 
         """
-
         super().__init__()
-        
         self.image = pygame.image.load("assets/ship.png")
         self.image = pygame.transform.scale(self.image, (100, 100))
         self.rect = self.image.get_rect()
