@@ -1,5 +1,4 @@
 import random
-
 import pygame
 import pygame_menu
 from src.fuel import Fuel
@@ -25,7 +24,6 @@ class Controller:
         self.width, self.height = pygame.display.get_window_size()
 
         self.p1 = Player(self.width / 2, self.height - 100)
-        self.obstacle = Obstacle(0, 0)
         self.obstacles = pygame.sprite.Group()
         self.max_obstacles = MAX_OBSTACLES
         self.fuel = pygame.sprite.Group()
@@ -38,7 +36,6 @@ class Controller:
 
         pygame.key.set_repeat(10)
         self.state = "START"
-        # setup pygame data
 
     def mainloop(self):
         """
