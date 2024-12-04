@@ -35,7 +35,7 @@ My project will be a game where you control a spacecraft through the vast darkne
 3. Real-Time Score Tracker
 4. Obstacles with Hitboxes
 5. Game Over Screen
-6. Leaderboard Tracker
+6. Highscore Tracker
 
 ### Classes
 
