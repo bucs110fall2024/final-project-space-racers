@@ -13,6 +13,13 @@ FUEL_SPAWN_RATE = 10
 class Controller:
   
   def __init__(self):
+    """
+    This function initializes the Controller object
+    Args:
+    Return: 
+    None
+
+    """
     self.screen = pygame.display.set_mode()
     self.width, self.height = pygame.display.get_window_size()
     
@@ -27,10 +34,17 @@ class Controller:
     self.score = 0
 
     pygame.key.set_repeat(10)
-    self.state = "START"
+    self.state = "GAME"
     #setup pygame data
     
   def mainloop(self):
+    """
+    This function sets up the directory for the start menu, game, and game over functions
+    Args:
+    Return: 
+    None
+
+    """
     while True:
       if self.state == "GAME":
         self.gameloop()
@@ -51,9 +65,23 @@ class Controller:
   ### below are some sample loop states ###
 
   def startgame(self):
+    """
+    This function changes the game state to game
+    Args:
+    Return: 
+    None
+
+    """
     self.state = "GAME"
     
   def menuloop(self):
+    """
+    This function creates the start menu
+    Args:
+    Return: 
+    None
+
+    """
     self.menu = pygame_menu.Menu("Space Racers", self.width / 2, self.height / 2)
     self.menu.add.label("Click START to play", font_size=28)
     self.menu.add.button("START", self.startgame, align=pygame_menu.locals.ALIGN_CENTER)
@@ -75,6 +103,13 @@ class Controller:
       #redraw
       
   def gameloop(self):
+    """
+    This function runs all of the events and updates for the game itself
+    Args:
+    Return: 
+    None
+
+    """
     while self.state == "GAME":
       for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -120,7 +155,7 @@ class Controller:
         if self.p1.rect.colliderect(fuelcan):
           fuelcan.kill()
           self.score += 1
-        elif fuelcan.rect.y >= 1080:
+        elif fuelcan.rect.y >= self.height:
           self.state = "END"
         
       self.obstacles.update()
@@ -145,6 +180,13 @@ class Controller:
       #redraw
     
   def gameoverloop(self):
+      """
+      This function displays the game over text, and updates the highscore if it is surpassed
+      Args:
+      Return: 
+      None
+
+      """
       end_font = pygame.font.SysFont(None, 48)
       end_message = end_font.render("GAME OVER", True, "red")
 
